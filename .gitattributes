@@ -1,0 +1,2 @@
+# Ensure that Python files use the correct line endings and are treated as text files
+*.py text=auto eol=lf 
