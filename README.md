@@ -1,12 +1,21 @@
-<h1>Note CLI</h1>
+<h1 align="center">Note CLI</h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
+  <img src="https://img.shields.io/badge/notecli-0.2.0-yellow.svg" alt="NoteCLI Version">
+</p>
 
 <p><strong>NoteCLI</strong> is a <strong>command-line interface (CLI) note-taking tool</strong>. It's a simple, text-based program that runs in the terminal, allowing you to <strong>create</strong>, <strong>view</strong>, <strong>edit</strong>, and <strong>delete notes</strong>.</p>
 
 <h2>Features</h2>
 <ul>
-  <li><strong>Create Files</strong>: Easily create files directly from your terminal using intuitive prompts.</li>
+  <li><strong>Navigate/View Files</strong>: Allows the user to navigate directories and view files.</li>
+  <li><strong>Edit Files</strong>: Enables the user to edit their files directly from the terminal.</li>
+  <li><strong>Create Files</strong>: Easily create files from the terminal using intuitive prompts.</li>
   <li><strong>Create Folders</strong>: Effortlessly create folders to organize your notes and files.</li>
-  <li><strong>Delete Files/Folders</strong>: Quickly delete unwanted files or folders from your terminal with confirmation.</li>
+  <li><strong>Change Path</strong>: Allows the user to change their default path when launching the <code>NoteCLI</code>.</li>
+  <li><strong>Store Data in JSON</strong>: Stores user data in <code>data.json</code>, so they don’t have to provide the same information repeatedly.</li>
+  <li><strong>Delete Files/Folders</strong>: Quickly delete unwanted files or folders from the terminal with a confirmation prompt.</li>
 </ul>
 
 <h2>Purpose</h2>
