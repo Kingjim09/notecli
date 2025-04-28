@@ -1,6 +1,17 @@
-from typing import List, Any
+import sys
+import time
+from typing import Any, List
 from utils.communication import communicate_with_user
-from utils.file_utils import get_os, get_path, change_path, check_if_file_or_dir, exitApp, clear_terminal
+from utils.file_utils import (
+  check_if_file_or_dir,
+  change_path,
+  clear_terminal,
+  delete_file_or_dir,
+  get_os,
+  get_path,
+  text_animation
+)
+from utils.static_text import show_help
 
 entries: List[str] = get_path(get_os())
 defualt_option: List[str] = [
@@ -13,25 +24,6 @@ defualt_option: List[str] = [
   "Exit"
 ]
 
-def help() -> None:
-  """Display help information about the CLI options and behavior."""
-  print("""## Help
-
-When you select a file or directory, the CLI automatically detects its type.  
-If a **file** is selected, its contents will be displayed in **read-only** mode.  
-If a **directory** is selected, the CLI will navigate into that directory.
-
-### What Each Default Option Does
-
-- **Edit File**: Edit an existing file directly within the terminal.
-- **Create a File**: Create a new file in the current working directory.
-- **Create a Folder**: Create a new folder in the current working directory.
-- **Change Default Path**: Set a new default working directory for the Note CLI.
-- **Delete**: Delete a file or folder from the current working directory.
-- **Help**: Display information about the available options.
-- **Exit**: Exit the application with a farewell message.
-""")
-
 def main() -> None:
   """Handles the main logic for user interaction and action selection."""
   userChoice: Any = communicate_with_user("list", "option", "What would you like to do?", choices=[*choices])
@@ -39,6 +31,8 @@ def main() -> None:
     if userChoice:
       choice: str = userChoice["option"]
       match choice:
+        case "..":
+          print(f"User has selected '{choice}',\n")
         case "Edit File":
           print(f"User has selected '{choice}'.\n")
         case "Create File":
@@ -50,12 +44,23 @@ def main() -> None:
           global entries
           entries = change_path(new_path)
         case "Delete":
-          print(f"User has selected '{choice}'.\n")
+          clear_terminal()
+          deleted_choice: Any = communicate_with_user("list", "option", "What whould you like to delete?", choices=[*entries, "Exit"])
+          choice: str = deleted_choice["option"]
+          if choice == "Exit": 
+            text_animation(message="Going back...")
+            print()
+          else: delete_file_or_dir(deleted_choice)
         case "Help": 
-          help()
+          clear_terminal()
+          show_help()
           communicate_with_user()
+          clear_terminal()
         case "Exit":
-          exitApp("Thank you for using the Note CLI. Goodbye!...")
+          text_animation(message="Thank you for using the Note CLI. Goodbye!...")
+          time.sleep(0.5)
+          clear_terminal()
+          sys.exit(0)
         case _:
           check_user_choice: str | None = check_if_file_or_dir(choice)
           match check_user_choice:
@@ -72,9 +77,10 @@ def main() -> None:
     print(f"Unexpected Error: {e}")
 
 if __name__ == "__main__":
+  clear_terminal()
   print("=== Welcome to Note CLI ===\n")
   while True:
-    choices: list[str] = [*entries, *defualt_option]
+    choices: list[str] = ["..", *entries, *defualt_option]
     main()
     # Clear the terminal after each main() loop iteration to keep the interface clean
     clear_terminal()
