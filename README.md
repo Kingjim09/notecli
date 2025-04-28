@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
-  <img src="https://img.shields.io/badge/notecli-0.2.0-yellow.svg" alt="NoteCLI Version">
+  <img src="https://img.shields.io/badge/notecli-0.3.0-yellow.svg" alt="NoteCLI Version">
 </p>
 
 <p><strong>NoteCLI</strong> is a <strong>command-line interface (CLI) note-taking tool</strong>. It's a simple, text-based program that runs in the terminal, allowing you to <strong>create</strong>, <strong>view</strong>, <strong>edit</strong>, and <strong>delete notes</strong>.</p>
