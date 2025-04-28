@@ -1,6 +1,5 @@
 import inquirer
-
-from typing import List, Any
+from typing import Any, List
 
 def communicate_with_user(
   type: str = "",
@@ -12,7 +11,7 @@ def communicate_with_user(
 ) -> Any:
   """Prompts the user for input, confirmation, or selection based on the specified type.""" 
   if choices is None: choices = []
-  user_choice: any
+  user_choice: Any
   match type:
     case "input":
       user_choice = inquirer.prompt(
