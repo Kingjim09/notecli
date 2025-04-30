@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
-  <img src="https://img.shields.io/badge/notecli-0.3.0-yellow.svg" alt="NoteCLI Version">
+  <img src="https://img.shields.io/badge/notecli-0.4.0-yellow.svg" alt="NoteCLI Version">
 </p>
 
 <p><strong>NoteCLI</strong> is a <strong>command-line interface (CLI) note-taking tool</strong>. It's a simple, text-based program that runs in the terminal, allowing you to <strong>create</strong>, <strong>view</strong>, <strong>edit</strong>, and <strong>delete notes</strong>.</p>
@@ -10,12 +10,14 @@
 <h2>Features</h2>
 <ul>
   <li><strong>Navigate/View Files</strong>: Allows the user to navigate directories and view files.</li>
+  <li><strong>Go Back to Parent Directory</strong>: Use the <code>go_back()</code> feature to easily return to a parent folder when navigating.</li>
   <li><strong>Edit Files</strong>: Enables the user to edit their files directly from the terminal.</li>
   <li><strong>Create Files</strong>: Easily create files from the terminal using intuitive prompts.</li>
   <li><strong>Create Folders</strong>: Effortlessly create folders to organize your notes and files.</li>
   <li><strong>Change Path</strong>: Allows the user to change their default path when launching the <code>NoteCLI</code>.</li>
+  <li><strong>Improved Path & Config Handling</strong>: Now uses a consistent and safer approach for storing and validating the config path in <code>data.json</code>.</li>
   <li><strong>Store Data in JSON</strong>: Stores user data in <code>data.json</code>, so they don’t have to provide the same information repeatedly.</li>
-  <li><strong>Delete Files/Folders</strong>: Quickly delete unwanted files or folders from the terminal with a confirmation prompt.</li>
+  <li><strong>Delete Files/Folders</strong>: Quickly delete unwanted files or folders from the terminal with a confirmation prompt. Now includes better handling for non-existent paths.</li>
 </ul>
 
 <h2>Purpose</h2>
