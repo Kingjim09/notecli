@@ -1,53 +1,56 @@
 import inquirer
 from typing import Any, List
 
-def communicate_with_user(
-  type: str = "",
-  name: str = "defualt",
-  message: str = "Please provide your input",
-  defualt: bool = True,
-  choices: List[Any] = None,
-  carousel: bool = True
+def prompt_user_for_input(
+  prompt_type: str = "",
+  field_name: str = "default",
+  prompt_message: str = "Please provide your input",
+  default_answer: bool = True,
+  available_choices: List[Any] = None,
+  enable_carousel: bool = True
 ) -> Any:
-  """Prompts the user for input, confirmation, or selection based on the specified type.""" 
-  if choices is None: choices = []
-  user_choice: Any
-  match type:
+  """Prompts the user for input, confirmation, or selection based on the specified prompt type."""
+  if available_choices is None:
+    available_choices = []
+  
+  user_response: Any
+
+  match prompt_type:
     case "input":
-      user_choice = inquirer.prompt(
-        [inquirer.Text(name, message=message)]
-      )
+      user_response = inquirer.prompt([
+        inquirer.Text(field_name, message=prompt_message)
+      ])
     case "confirm":
-      user_choice = inquirer.prompt(
-        [inquirer.Confirm(name, message=message, default=defualt)]
-      )
+      user_response = inquirer.prompt([
+        inquirer.Confirm(field_name, message=prompt_message, default=default_answer)
+      ])
     case "list":
-      user_choice = inquirer.prompt(
-        [inquirer.List(name, message=message, choices=[*choices])]
-      )
+      user_response = inquirer.prompt([
+        inquirer.List(field_name, message=prompt_message, choices=available_choices)
+      ])
     case "checkbox":
-      user_choice = inquirer.prompt(
-        [inquirer.Checkbox(name, message=message, choices=[*choices])]
-      )
+      user_response = inquirer.prompt([
+        inquirer.Checkbox(field_name, message=prompt_message, choices=available_choices)
+      ])
     case "password":
-      user_choice = inquirer.prompt(
-        [inquirer.Password(name, message=message)]
-      )
-    case "listJS": # similarly to Node.js by adding carousel
-      user_choice = inquirer.prompt(
-        [inquirer.List(name, message=message, choices=[*choices], carousel=carousel)]
-      )
+      user_response = inquirer.prompt([
+        inquirer.Password(field_name, message=prompt_message)
+      ])
+    case "listJS":  # Adds carousel functionality, similar to Node.js
+      user_response = inquirer.prompt([
+        inquirer.List(field_name, message=prompt_message, choices=available_choices, carousel=enable_carousel)
+      ])
     case "editor":
-      user_choice = inquirer.prompt(
-        [inquirer.Editor(name, message=message)]
-      )
+      user_response = inquirer.prompt([
+        inquirer.Editor(field_name, message=prompt_message)
+      ])
     case "number":
-      user_choice = inquirer.prompt(
-        [inquirer.Number(name, message=message)]
-      )
-    case _: # Default case for unrecognized input type
-      user_choice = inquirer.prompt(
-        [inquirer.Text("continue", message="Press anything to continue")]
-      )
-      print()
-  return user_choice
+      user_response = inquirer.prompt([
+        inquirer.Number(field_name, message=prompt_message)
+      ])
+    case _:
+      user_response = inquirer.prompt([
+        inquirer.Text(field_name, message="Press enter to continue")
+      ])
+      print()  
+  return user_response
