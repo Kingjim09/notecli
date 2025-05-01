@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
-  <img src="https://img.shields.io/badge/notecli-0.4.0-yellow.svg" alt="NoteCLI Version">
+  <img src="https://img.shields.io/badge/notecli-0.5.0-yellow.svg" alt="NoteCLI Version">
 </p>
 
 <p><strong>NoteCLI</strong> is a <strong>command-line interface (CLI) note-taking tool</strong>. It's a simple, text-based program that runs in the terminal, allowing you to <strong>create</strong>, <strong>view</strong>, <strong>edit</strong>, and <strong>delete notes</strong>.</p>
@@ -18,6 +18,7 @@
   <li><strong>Improved Path & Config Handling</strong>: Now uses a consistent and safer approach for storing and validating the config path in <code>data.json</code>.</li>
   <li><strong>Store Data in JSON</strong>: Stores user data in <code>data.json</code>, so they don’t have to provide the same information repeatedly.</li>
   <li><strong>Delete Files/Folders</strong>: Quickly delete unwanted files or folders from the terminal with a confirmation prompt. Now includes better handling for non-existent paths.</li>
+  <li><strong>Improved User Input Handling</strong>: Refactored user input system to make interactions more intuitive and user-friendly, using <code>prompt_user_for_input()</code> for consistent prompts.</li>
 </ul>
 
 <h2>Purpose</h2>
