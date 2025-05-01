@@ -1,19 +1,26 @@
 def show_help() -> None:
-  """Display help information about the CLI options and behavior."""
-  print("""## Help
+  """Display detailed help information about the CLI options and behavior."""
+  print("""## Note CLI Help
 
-When you select a file or directory, the CLI automatically detects its type.  
-- If a **file** is selected, its contents are displayed in **read-only** mode.  
-- If a **directory** is selected, the CLI navigates into that directory, allowing you to view its contents.
+This CLI tool allows you to interact with files and directories directly from the terminal. Below are the available commands and their usage.
 
-### Default Options Explained
+### File and Directory Navigation
+- **Select a file**: If a **file** is selected, its contents will be displayed in **read-only** mode, allowing you to view its content but not modify it.
+- **Select a directory**: If a **directory** is selected, the CLI will navigate into that directory, displaying its contents, and enabling further navigation.
 
-- **..**: Go back one directory from the current location.
-- **Edit File**: Open and edit an existing file directly within the terminal.
-- **Create File**: Create a new file in the current working directory.
-- **Create Folder**: Create a new folder in the current working directory.
-- **Change Default Path**: Update the default working directory for the Note CLI.
-- **Delete**: Remove a file or folder from the current working directory.
-- **Help**: View detailed information about available options and usage.
-- **Exit**: Close the application with a farewell message.
+### Available Commands
+- **..**: Go back one directory from your current location.
+- **Edit File**: Open an existing file for editing. You can modify its contents directly in the terminal.
+- **Create File**: Create a new file in the current directory. Provide a name and optional content for the file.
+- **Create Folder**: Create a new folder in the current directory. Provide a name for the folder.
+- **Change Default Path**: Change the default working directory for the CLI tool. This will set a new base directory for navigation and file operations.
+- **Delete**: Delete a file or folder from the current directory. Be careful, as this operation is irreversible.
+- **Help**: Display this detailed help message, which explains the available options and commands.
+- **Exit**: Exit the application with a friendly farewell message.
+
+### Additional Information
+- **Navigation**: When navigating directories, you can use the `..` command to return to the parent directory.
+- **File Management**: Editing files and creating folders or files is straightforward; however, ensure you provide valid paths to avoid errors.
+
+Feel free to explore and use these commands to manage your files and directories effectively!
   """)
