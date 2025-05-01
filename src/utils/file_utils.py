@@ -48,9 +48,9 @@ def get_path(default_path: str) -> List[str]:
   try:
     with open(data_file, "r") as f:
       config: Any = json.load(f)
-      path: Any = config.get(default_path)
+      path: Any = config.get("path", "")
   except (FileNotFoundError, json.JSONDecodeError):
-    path = None
+    path = ""
     config = {}
 
   if not path:
@@ -68,6 +68,7 @@ def get_path(default_path: str) -> List[str]:
     entries = [e.name for e in folder.iterdir()]
   else:
     print("Path does not exist or is not a directory.")
+    entries = []
 
   return entries
 
@@ -122,10 +123,10 @@ def delete_file_or_dir(delete_path: str, default_path: str = get_os()) -> None:
   match check_delete_path:
     case "File":
       os.remove(deletion_path)
-      print("Successfully deleted the file.")
+      text_animation(message="Successfully deleted the file.")
     case "Dir":
       shutil.rmtree(deletion_path)
-      print("Successfully deleted the directory.")
+      text_animation(message="Successfully deleted the directory.")
 
 def text_animation(delay: int = 0.05, message: str = "") -> None:
   """Animates text output with a delay, showing an error if no message is provided."""
@@ -162,6 +163,40 @@ def go_back(default_path: str = get_os()) -> Tuple[str, List[str]]:
     print("Unable to go back. Path doesn't exist.")
 
   return new_path, entries
+
+def create_file(file_path: str, message: str = "") -> None:
+  """Creates a new file in the current directory."""
+  if not file_path:
+    text_animation("Please enter a valid file path.")
+    return
+
+  if file_path.parent and not file_path.parent.exists():
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+
+  try:
+    file_path.write_text(message)
+    print(f"File '{file_path}' created successfully.")
+  except FileExistsError:
+    print(f"Error: '{file_path}' already exists.")
+
+def create_folder(folder_path: str) -> None:
+  """Creates a new folder at the specified path."""
+  folder_path = str(folder_path).strip()
+
+  if not folder_path:
+    text_animation("Please enter a valid folder path.")
+    return
+  
+  path: Path = Path(folder_path)
+
+  try:
+    if path.exists():
+      print(f"Folder '{folder_path}' already exists.")
+    else:
+      path.mkdir(parents=True, exist_ok=True)
+      print(f"Folder '{folder_path}' created successfully.")
+  except Exception as e:
+    print(f"Error creating folder: {e}")
 
 def clear_terminal() -> None:
   """Clears the terminal."""
