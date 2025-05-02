@@ -1,3 +1,20 @@
+import textwrap
+
+def display_welcome_banner() -> None:
+  """Display the welcome banner for the NoteCLI tool."""
+  banner = textwrap.dedent("""\
+     _   _       _          _____ _      _____ 
+    | \ | |     | |        / ____| |    |_   _|
+    |  \| | ___ | |_ ___  | |    | |      | |  
+    | . ` |/ _ \| __/ _ \ | |    | |      | |  
+    | |\  | (_) | ||  __/ | |____| |____ _| |_ 
+    |_| \_|\___/ \__\___|  \_____|______|_____|
+
+  Welcome to NoteCLI, a command-line interface note-taking tool.
+  """)
+
+  print("\033[92m" + banner.center(80) + "\033[0m")
+
 def show_help() -> None:
   """Display detailed help information about the CLI options and behavior."""
   print("""## Note CLI Help
