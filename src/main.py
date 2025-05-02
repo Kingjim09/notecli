@@ -15,7 +15,10 @@ from utils.file_utils import (
   go_back,
   text_animation
 )
-from utils.static_text import show_help
+from utils.static_text import (
+  display_welcome_banner,
+  show_help
+)
 
 entries: List[str] = get_path(get_os())
 default_option: List[str] = [
@@ -114,7 +117,9 @@ def main() -> None:
 
 if __name__ == "__main__":
   clear_terminal()
-  print("=== Welcome to Note CLI ===\n")
+  display_welcome_banner()
+  prompt_user_for_input()
+  clear_terminal()
   while True:
     choices: List[str] = ["..", *entries, *default_option]
     main()
