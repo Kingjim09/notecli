@@ -1,19 +1,39 @@
 import textwrap
 
-def display_welcome_banner() -> None:
-  """Display the welcome banner for the NoteCLI tool."""
-  banner = textwrap.dedent("""\
-     _   _       _          _____ _      _____ 
-    | \ | |     | |        / ____| |    |_   _|
-    |  \| | ___ | |_ ___  | |    | |      | |  
-    | . ` |/ _ \| __/ _ \ | |    | |      | |  
-    | |\  | (_) | ||  __/ | |____| |____ _| |_ 
-    |_| \_|\___/ \__\___|  \_____|______|_____|
+import os
+import textwrap
 
+def display_welcome_banner(width: int = 80, color: str = "\033[92m") -> None:
+  """Display the welcome banner for the NoteCLI tool, including additional information about its usage."""
+  banner = textwrap.dedent("""\
+        _   _       _          _____ _      _____ 
+      | \ | |     | |        / ____| |    |_   _|
+      |  \| | ___ | |_ ___  | |    | |      | |  
+      | . ` |/ _ \| __/ _ \ | |    | |      | |  
+      | |\  | (_) | ||  __/ | |____| |____ _| |_ 
+      |_| \_|\___/ \__\___|  \_____|______|_____|
+      
   Welcome to NoteCLI, a command-line interface note-taking tool.
+
+  Features:
+  - Create, view, and edit notes right from your terminal.
+  - Easy file management for organizing your notes.
+  - Supports both plain text files and password-protected encrypted notes.
+  
+  Commands:
+  - "Edit File": Open and edit existing files.
+  - "Create File": Create new note files.
+  - "Create Folder": Organize notes by creating folders.
+  - "Delete": Remove files or folders.
+  - "Change Default Path": Change the directory path for your notes.
+  - "Help": Get more information about the tool and its commands.
+  - "Exit": Exit the NoteCLI tool.
+  
+  To get started, choose one of the options from the menu below.
   """)
 
-  print("\033[92m" + banner.center(80) + "\033[0m")
+  terminal_width: int = min(width, os.get_terminal_size().columns)  # Use terminal width or provided width
+  print(color + banner.center(terminal_width) + "\033[0m")
 
 def show_help() -> None:
   """Display detailed help information about the CLI options and behavior."""
