@@ -47,7 +47,25 @@ def main() -> None:
           new_path, entries = go_back(current_path)
           current_path = new_path
         case "Edit File":
-          print(f"User has selected '{selected_option}'.\n")
+          files_only: List[str] = [
+            entry for entry in entries if (Path(current_path) / entry).is_file()
+          ] + ["Exit"]
+          
+          file_choice: Dict[str, str] = prompt_user_for_input("list", "edit file", "Which file do you want to edit?", available_choices=files_only)
+          
+          if file_choice["edit file"] == "Exit":
+            text_animation("Exiting the file editing process...")
+            return
+          
+          selected_file: Path = Path(current_path) / file_choice["edit file"]
+
+          if selected_file.exists() and selected_file.is_file():
+              original_content: str = selected_file.read_text(encoding="utf-8")
+              edited: Dict[str, str] = prompt_user_for_input("editor", "content", f"Editing {selected_file}...", default_answer=original_content)
+              selected_file.write_text(edited["content"], encoding="utf-8")
+              text_animation(f"{selected_file.name} has been updated.")
+          else:
+              text_animation("The selected path is not a file or doesn't exist.")
         case "Create File":
           while True:
             new_file_name_input: Dict[str, str] = prompt_user_for_input("input", "new file", "What will be the name of the new file?")
